@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>*,*::before,*::after{box-sizing:border-box}:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>Quadro da Turma SI-NOT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: quadro de avisos de corredor — uma coluna estreita, faixa "esta semana" no topo, linha do tempo por mês, avisos e resenha abaixo */
+:root{
+  --bg:#eef1f5; --paper:#ffffff; --ink:#17213a; --muted:#5b6478; --line:#d6dbe5;
+  --accent:#e8a317; --accent-ink:#5a3d00; --accent-soft:#fdf1d6;
+  --c-entrega:#2453b8; --c-prova:#b3261e; --c-aula:#227a52; --c-evento:#6b3fa0;
+  --chip-bg:#eef1f7;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1420; --paper:#171e2d; --ink:#e7ebf3; --muted:#9aa3b6; --line:#2a3346;
+  --accent:#f2b63a; --accent-ink:#1b1300; --accent-soft:#3a2d10;
+  --c-entrega:#7fa6ff; --c-prova:#ff8a80; --c-aula:#6fd3a3; --c-evento:#c6a2f5;
+  --chip-bg:#222b3d; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0f1420; --paper:#171e2d; --ink:#e7ebf3; --muted:#9aa3b6; --line:#2a3346;
+  --accent:#f2b63a; --accent-ink:#1b1300; --accent-soft:#3a2d10;
+  --c-entrega:#7fa6ff; --c-prova:#ff8a80; --c-aula:#6fd3a3; --c-evento:#c6a2f5;
+  --chip-bg:#222b3d; color-scheme:dark }
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:32px}
+h1,h2{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,6vw,2.6rem);font-weight:800;line-height:1.05}
+h2{font-size:1.3rem;font-weight:600}
+.eyebrow{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header{display:flex;flex-direction:column;gap:10px}
+header p{margin:0;color:var(--muted);max-width:60ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.9rem;color:var(--muted)}
+.meta b{color:var(--ink)}
+
+.week{background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.week h2{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.week h2 small{font-family:var(--f-mono);font-size:.78rem;font-weight:500;color:var(--muted)}
+.week ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.week li{display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:baseline}
+.week .when{font-family:var(--f-mono);font-size:.82rem;font-variant-numeric:tabular-nums}
+.week .what{min-width:0}
+.empty{color:var(--muted);margin:0}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font:inherit;font-size:.88rem;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filters button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+
+.month{display:flex;flex-direction:column;gap:2px}
+.month>h3{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px;font-weight:500}
+.item{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.item.past{opacity:.45}
+.date{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
+.date .d{font-family:var(--f-display);font-weight:800;font-size:1.7rem;font-variant-numeric:tabular-nums}
+.date .w{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px}
+.body{min-width:0;display:flex;flex-direction:column;gap:4px}
+.row1{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.tag{font-family:var(--f-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:4px;background:var(--chip-bg);display:inline-flex;align-items:center;gap:5px}
+.disc{font-size:.9rem;color:var(--muted);font-weight:600}
+.title{font-weight:700}
+.note{font-size:.92rem;color:var(--muted)}
+.count{font-family:var(--f-mono);font-size:.75rem;padding:2px 7px;border-radius:4px;background:var(--accent);color:var(--accent-ink)}
+.body a{color:var(--c-entrega)}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.panel ol,.panel ul{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:8px}
+.panel li{max-width:65ch}
+.panel .src{font-size:.85rem;color:var(--muted);margin:0}
+.warn{border-left:3px solid var(--c-prova);padding-left:12px}
+footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:420px){.week li{grid-template-columns:1fr;gap:0}.item{grid-template-columns:52px 1fr}}
+@media (prefers-reduced-motion:no-preference){.filters button{transition:background .15s,color .15s}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Sistemas de Informação · Noturno · SI-NOT 1A+2A · 2º/2026</span>
+    <h1>Quadro da Turma</h1>
+    <p>Prazos, provas e avisos das disciplinas juntos num lugar só, para ninguém precisar caçar no Moodle ou rolar o WhatsApp.</p>
+    <div class="meta"><span>Atualizado em <b id="upd">23/10/2026</b></span><span>Mantido pelos representantes de turma</span></div>
+  </header>
+
+  <section class="week" aria-labelledby="wk">
+    <h2 id="wk">Próximos 7 dias <small id="wkrange"></small></h2>
+    <ul id="weeklist"></ul>
+  </section>
+
+  <section aria-labelledby="cal" style="display:flex;flex-direction:column;gap:12px">
+    <h2 id="cal">Calendário completo</h2>
+    <div class="filters" role="group" aria-label="Filtrar por tipo" id="filters"></div>
+    <div id="timeline"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="av">
+    <h2 id="av">Avisos dos professores</h2>
+    <ul>
+      <li><b>Engenharia de Software:</b> não houve aula na quarta, 21/10. A reposição vai ser combinada com a turma.</li>
+      <li><b>Fund. Banco de Dados:</b> aulas em novembro nos dias 03, 10 e 17. Em 27 e 28/10 não há aula regular por causa da Jornada Interdisciplinar.</li>
+      <li class="warn"><b>Disciplinas EAD:</b> façam todas as provas e atividades. Quem não fizer pode ficar de DP (dependência), o que impede a colação de grau.</li>
+    </ul>
+  </section>
+
+  <section class="panel" aria-labelledby="rs">
+    <h2 id="rs">Resenha da reunião com a coordenação</h2>
+    <p class="src">Reunião dos representantes de turma, 19/10/2026</p>
+    <ol>
+      <li><b>Portal do Aluno:</b> confiram se há documentos pendentes e regularizem.</li>
+      <li><b>Simulado do ENADE:</b> uma ferramenta de simulado vai ser lançada. Fiquem atentos à divulgação.</li>
+      <li><b>EAD:</b> façam todas as provas e atividades. A falta delas pode gerar DP e impedir a colação de grau.</li>
+      <li><b>Programas de incentivo:</b> monitoria, inovação, startups e projetos de pesquisa estão abertos à participação.</li>
+      <li><b>Saídas antes do horário:</b> o professor pode comunicar à Direção, com reflexo no registro de faltas.</li>
+      <li><b>Mudanças de horário:</b> foram feitas para atender à grade curricular.</li>
+      <li><b>Falta em prova:</b> só é justificada com atestado médico entregue em até <b>48 horas</b> após a prova.</li>
+      <li><b>Suporte:</b> chamados de estudantes passam a ser abertos pelo <b>GLPI</b> (menu "Central de Atendimento" no Moodle).</li>
+      <li><b>Dúvidas na matéria:</b> procurem primeiro o professor da disciplina.</li>
+      <li><b>Representantes:</b> estamos à disposição para ouvir demandas e levar à coordenação.</li>
+    </ol>
+  </section>
+
+  <footer>Página informal feita pelos representantes, não é um canal oficial do Senac. Em caso de diferença, vale o que está no Moodle ou o que o professor informar. Viu algo errado? Fale com os representantes.</footer>
+</div>
+
+<script>
+const TIPOS={entrega:{n:"Entrega",c:"--c-entrega"},prova:{n:"Prova",c:"--c-prova"},aula:{n:"Aula",c:"--c-aula"},evento:{n:"Evento",c:"--c-evento"}};
+const M="https://moodle.df.senac.br/mod/assign/view.php?id=";
+// ini/fim no formato AAAA-MM-DD; hora opcional
+const ITENS=[
+ {ini:"2026-10-24",hora:"9h",tipo:"aula",disc:"Direito Digital (EAD)",t:"Aula online síncrona"},
+ {ini:"2026-10-27",hora:"19h",tipo:"entrega",disc:"Fund. Banco de Dados",t:"Atividade 6: normalização (1FN, 2FN, 3FN)",nota:"Entregar em planilha .xlsx.",url:M+"157415"},
+ {ini:"2026-10-27",hora:"23:59",tipo:"entrega",disc:"Engenharia de Software",t:"Atividade de Modelagem de Diagramas",url:M+"156555"},
+ {ini:"2026-10-27",fim:"2026-10-29",tipo:"evento",disc:"Todas as turmas",t:"Jornada Interdisciplinar",nota:"Sem aula regular nesses dias."},
+ {ini:"2026-10-29",hora:"23:59",tipo:"entrega",disc:"Infraestrutura de Redes",t:"Aula Prática 02",url:M+"157587"},
+ {ini:"2026-10-30",tipo:"prova",disc:"Todas as disciplinas",t:"Avaliação integrada presencial"},
+ {ini:"2026-10-31",hora:"23:59",tipo:"entrega",disc:"Sistemas Operacionais (EAD)",t:"Projeto 03: Gerenciamento de Memória e Sistemas de Arquivos",url:M+"156527"},
+ {ini:"2026-11-03",tipo:"prova",disc:"Fund. Banco de Dados",t:"Prova na 1ª metade da aula",nota:"A 2ª metade da aula terá conteúdo novo."},
+ {ini:"2026-11-08",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Fórum do 2º Bimestre",nota:"Post de 10 a 20 linhas (0,5 ponto) + comentário no post de um colega (até 0,3 ponto)."},
+ {ini:"2026-11-12",tipo:"prova",disc:"Disciplinas EAD",t:"Provas EAD presenciais"},
+ {ini:"2026-11-20",hora:"23:59",tipo:"entrega",disc:"Sistemas Operacionais (EAD)",t:"Projeto 04: Entrada, Saída e Administração de SO",url:M+"156541"},
+ {ini:"2026-11-23",fim:"2026-11-27",tipo:"prova",disc:"Todas as disciplinas",t:"Semana de provas do bimestre"},
+ {ini:"2026-11-24",tipo:"prova",disc:"Fund. Banco de Dados",t:"Prova sobre o conteúdo novo"}
+];
+const DS=["dom","seg","ter","qua","qui","sex","sáb"], MS=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+const pd=s=>{const[a,m,d]=s.split("-").map(Number);return new Date(a,m-1,d)};
+const hoje=new Date();hoje.setHours(0,0,0,0);
+const dias=d=>Math.round((d-hoje)/864e5);
+const fmt=d=>String(d.getDate()).padStart(2,"0")+"/"+String(d.getMonth()+1).padStart(2,"0");
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const rel=it=>{const a=dias(pd(it.ini)),b=dias(pd(it.fim||it.ini));if(a<=0&&b>=0)return a===b?"hoje":"em andamento";if(a===1)return"amanhã";if(a>1)return"em "+a+" dias";return""};
+const tag=t=>`<span class="tag"><span class="dot" style="background:var(${TIPOS[t].c})"></span>${TIPOS[t].n}</span>`;
+
+let filtro="todos";
+try{filtro=localStorage.getItem("filtro")||"todos"}catch(e){}
+function filtros(){
+  const el=document.getElementById("filters");
+  const op=[["todos","Todos",null],...Object.entries(TIPOS).map(([k,v])=>[k,v.n+"s",v.c])];
+  el.innerHTML=op.map(([k,n,c])=>`<button type="button" id="f-${k}" data-k="${k}" aria-pressed="${filtro===k}">${c?`<span class="dot" style="background:var(${c})"></span>`:""}${n}</button>`).join("");
+  el.onclick=e=>{const b=e.target.closest("button");if(!b)return;filtro=b.dataset.k;try{localStorage.setItem("filtro",filtro)}catch(_){ }filtros();linha()};
+}
+function linha(){
+  const lst=ITENS.filter(i=>filtro==="todos"||i.tipo===filtro).sort((a,b)=>a.ini.localeCompare(b.ini));
+  const grupos={};lst.forEach(i=>{const d=pd(i.ini);const k=d.getFullYear()+"-"+d.getMonth();(grupos[k]=grupos[k]||{m:MS[d.getMonth()],l:[]}).l.push(i)});
+  document.getElementById("timeline").innerHTML=Object.values(grupos).map(g=>`<div class="month"><h3>${g.m}</h3>${g.l.map(i=>{
+    const d=pd(i.ini),f=i.fim?pd(i.fim):null,past=dias(f||d)<0,r=rel(i);
+    return `<article class="item${past?" past":""}"><div class="date"><span class="d">${String(d.getDate()).padStart(2,"0")}${f?"–"+String(f.getDate()).padStart(2,"0"):""}</span><span class="w">${DS[d.getDay()]}${f?"–"+DS[f.getDay()]:""}</span></div>
+    <div class="body"><div class="row1">${tag(i.tipo)}<span class="disc">${esc(i.disc)}</span>${r?`<span class="count">${r}</span>`:""}</div>
+    <div class="title">${i.url?`<a href="${i.url}" target="_blank" rel="noopener">${esc(i.t)}</a>`:esc(i.t)}${i.hora?` · <span style="font-family:var(--f-mono);font-weight:500">${i.hora}</span>`:""}</div>
+    ${i.nota?`<div class="note">${esc(i.nota)}</div>`:""}</div></article>`}).join("")}</div>`).join("")||'<p class="empty">Nada deste tipo no calendário.</p>';
+}
+function semana(){
+  const fimS=new Date(hoje);fimS.setDate(fimS.getDate()+7);
+  document.getElementById("wkrange").textContent=fmt(hoje)+" a "+fmt(fimS);
+  const l=ITENS.filter(i=>{const a=pd(i.ini),b=pd(i.fim||i.ini);return b>=hoje&&a<=fimS}).sort((a,b)=>a.ini.localeCompare(b.ini));
+  document.getElementById("weeklist").innerHTML=l.length?l.map(i=>{const d=pd(i.ini);return `<li><span class="when">${DS[d.getDay()]} ${fmt(d)}${i.fim?"–"+fmt(pd(i.fim)):""}${i.hora?" "+i.hora:""}</span><span class="what">${tag(i.tipo)} <b>${esc(i.t)}</b> <span class="disc">· ${esc(i.disc)}</span></span></li>`}).join(""):'<li class="empty">Nenhum prazo nos próximos 7 dias.</li>';
+}
+filtros();linha();semana();
+</script>
+</body>
+</html>
