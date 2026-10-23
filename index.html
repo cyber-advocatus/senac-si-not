@@ -30,7 +30,7 @@
   --chip-bg:#222b3d; color-scheme:dark }
 
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
-.wrap{max-width:760px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:32px}
+.wrap{max-width:1680px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:32px}
 h1,h2{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
 h1{font-size:clamp(1.9rem,6vw,2.6rem);font-weight:800;line-height:1.05}
 h2{font-size:1.3rem;font-weight:600}
@@ -77,6 +77,19 @@ header p{margin:0;color:var(--muted);max-width:60ch}
 .panel .src{font-size:.85rem;color:var(--muted);margin:0}
 .warn{border-left:3px solid var(--c-prova);padding-left:12px}
 footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.cols{display:flex;flex-direction:column;gap:32px}
+.side{display:flex;flex-direction:column;gap:24px;min-width:0}
+.main{min-width:0;display:flex;flex-direction:column;gap:12px}
+@media (min-width:1000px){
+  .wrap{padding-block:40px 64px;padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}
+  .top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:40px;align-items:start}
+  .week ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px 24px}
+  .cols{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(340px,1fr);gap:40px;align-items:start}
+  .side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+}
+@media (min-width:1400px){
+  .timeline-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;align-items:start}
+}
 @media (max-width:420px){.week li{grid-template-columns:1fr;gap:0}.item{grid-template-columns:52px 1fr}}
 @media (prefers-reduced-motion:no-preference){.filters button{transition:background .15s,color .15s}}
 </style>
@@ -84,6 +97,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 <body>
 
 <div class="wrap">
+ <div class="top">
   <header>
     <span class="eyebrow">Segurança da Informação · Noturno · SI-NOT 1A+2A · 2º/2026</span>
     <h1>Quadro da Turma</h1>
@@ -95,13 +109,16 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
     <h2 id="wk">Próximos 7 dias <small id="wkrange"></small></h2>
     <ul id="weeklist"></ul>
   </section>
+ </div>
 
-  <section aria-labelledby="cal" style="display:flex;flex-direction:column;gap:12px">
+ <div class="cols">
+  <section class="main" aria-labelledby="cal">
     <h2 id="cal">Calendário completo</h2>
     <div class="filters" role="group" aria-label="Filtrar por tipo" id="filters"></div>
-    <div id="timeline"></div>
+    <div id="timeline" class="timeline-grid"></div>
   </section>
 
+  <aside class="side">
   <section class="panel" aria-labelledby="av">
     <h2 id="av">Avisos dos professores</h2>
     <ul>
@@ -127,6 +144,8 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
       <li><b>Representantes:</b> estamos à disposição para ouvir demandas e levar à coordenação.</li>
     </ol>
   </section>
+  </aside>
+ </div>
 
   <footer>Página informal feita pelos representantes, não é um canal oficial do Senac. Em caso de diferença, vale o que está no Moodle ou o que o professor informar. Viu algo errado? Fale com os representantes.</footer>
 </div>
