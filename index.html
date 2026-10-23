@@ -70,6 +70,7 @@ header p{margin:0;color:var(--muted);max-width:60ch}
 .note{font-size:.92rem;color:var(--muted)}
 .count{font-family:var(--f-mono);font-size:.75rem;padding:2px 7px;border-radius:4px;background:var(--accent);color:var(--accent-ink)}
 .body a{color:var(--c-entrega)}
+.links{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.92rem;font-weight:600}
 
 .panel{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px}
 .panel ol,.panel ul{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:8px}
@@ -164,6 +165,7 @@ const ITENS=[
  {ini:"2026-10-31",hora:"23:59",tipo:"entrega",disc:"Sistemas Operacionais (EAD)",t:"Projeto 03: Gerenciamento de Memória e Sistemas de Arquivos",url:M+"156527"},
  {ini:"2026-11-03",tipo:"prova",disc:"Fund. Banco de Dados",t:"Prova na 1ª metade da aula",nota:"A 2ª metade da aula terá conteúdo novo."},
  {ini:"2026-11-08",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Fórum do 2º Bimestre",nota:"Post de 10 a 20 linhas (0,5 ponto) + comentário no post de um colega (até 0,3 ponto)."},
+ {ini:"2026-11-11",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Questionários dos Temas 6 a 10",nota:"Fazer todos antes da prova EAD de 12/11. O professor escolhe um deles para valer 1 ponto no trabalho do 2º bimestre. Não deixe questões em branco.",links:[["Tema 6","https://moodle.df.senac.br/mod/quiz/view.php?id=149115"],["Tema 7","https://moodle.df.senac.br/mod/quiz/view.php?id=149116"],["Tema 8","https://moodle.df.senac.br/mod/quiz/view.php?id=149117"],["Tema 9","https://moodle.df.senac.br/mod/quiz/view.php?id=149118"],["Tema 10","https://moodle.df.senac.br/mod/quiz/view.php?id=149119"]]},
  {ini:"2026-11-12",tipo:"prova",disc:"Disciplinas EAD",t:"Provas EAD presenciais"},
  {ini:"2026-11-20",hora:"23:59",tipo:"entrega",disc:"Sistemas Operacionais (EAD)",t:"Projeto 04: Entrada, Saída e Administração de SO",url:M+"156541"},
  {ini:"2026-11-23",fim:"2026-11-27",tipo:"prova",disc:"Todas as disciplinas",t:"Semana de provas do bimestre"},
@@ -194,7 +196,7 @@ function linha(){
     return `<article class="item${past?" past":""}"><div class="date"><span class="d">${String(d.getDate()).padStart(2,"0")}${f?"–"+String(f.getDate()).padStart(2,"0"):""}</span><span class="w">${DS[d.getDay()]}${f?"–"+DS[f.getDay()]:""}</span></div>
     <div class="body"><div class="row1">${tag(i.tipo)}<span class="disc">${esc(i.disc)}</span>${r?`<span class="count">${r}</span>`:""}</div>
     <div class="title">${i.url?`<a href="${i.url}" target="_blank" rel="noopener">${esc(i.t)}</a>`:esc(i.t)}${i.hora?` · <span style="font-family:var(--f-mono);font-weight:500">${i.hora}</span>`:""}</div>
-    ${i.nota?`<div class="note">${esc(i.nota)}</div>`:""}</div></article>`}).join("")}</div>`).join("")||'<p class="empty">Nada deste tipo no calendário.</p>';
+    ${i.nota?`<div class="note">${esc(i.nota)}</div>`:""}${i.links?`<div class="links">${i.links.map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(n)}</a>`).join("")}</div>`:""}</div></article>`}).join("")}</div>`).join("")||'<p class="empty">Nada deste tipo no calendário.</p>';
 }
 function semana(){
   const fimS=new Date(hoje);fimS.setDate(fimS.getDate()+7);
