@@ -76,6 +76,13 @@ header p{margin:0;color:var(--muted);max-width:60ch}
 .panel ol,.panel ul{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:8px}
 .panel li{max-width:65ch}
 .panel .src{font-size:.85rem;color:var(--muted);margin:0}
+.vagas{display:flex;flex-direction:column;gap:14px}
+.vaga{display:flex;flex-direction:column;gap:2px;padding-top:12px;border-top:1px solid var(--line)}
+.vaga:first-child{border-top:0;padding-top:0}
+.vaga .ag{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.vaga .bolsa{font-weight:700;font-variant-numeric:tabular-nums}
+.vaga .how{font-size:.88rem;color:var(--muted)}
+.vaga a{color:var(--c-entrega)}
 .warn{border-left:3px solid var(--c-prova);padding-left:12px}
 footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
 .cols{display:flex;flex-direction:column;gap:32px}
@@ -125,8 +132,23 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
     <ul>
       <li><b>Engenharia de Software:</b> não houve aula na quarta, 21/10. A reposição vai ser combinada com a turma.</li>
       <li><b>Fund. Banco de Dados:</b> aulas em novembro nos dias 03, 10 e 17. Em 27 e 28/10 não há aula regular por causa da Jornada Interdisciplinar.</li>
+      <li class="warn"><b>Avaliação Integrada (30/10, Auditório):</b> entrada das 18h45 às 19h20, sem tolerância para atraso e sem celular. Quem cursa só disciplinas em dependência não faz as provas presenciais. Quem tem disciplinas regulares e de dependência faz apenas as provas das regulares.</li>
       <li class="warn"><b>Disciplinas EAD:</b> façam todas as provas e atividades. Quem não fizer pode ficar de DP (dependência), o que impede a colação de grau.</li>
     </ul>
+  </section>
+
+  <section class="panel" aria-labelledby="vg">
+    <h2 id="vg">Vagas de estágio em TI</h2>
+    <p class="src">Boletim de Estágio do NUADIS, semana de 22/10 a 29/10/2026. As vagas de outras áreas estão no boletim completo.</p>
+    <div class="vagas">
+      <div class="vaga"><span class="ag">CIEE · Processo seletivo público</span><b>Tribunal Regional Federal da 1ª Região (Edital 02/2026)</b><span>Nível superior, 20h semanais · <span class="bolsa">R$ 1.200,00</span> + auxílio-transporte de R$ 14,00 por dia</span><span class="how"><b>Inscrições e prova on-line até 12h de 03/11/2026.</b> Confira no edital se o seu curso está no Anexo I. Inscrição em <a href="https://pp.ciee.org.br/vitrine/17437/detalhe" target="_blank" rel="noopener">pp.ciee.org.br</a>.</span></div>
+      <div class="vaga"><span class="ag">Nube · Evento</span><b>Festival de Vagas Nube 2026</b><span>04/11, das 9h às 18h30 · on-line e gratuito</span><span class="how">Vagas de estágio, processos seletivos, palestras e horas complementares. Inscrição em <a href="https://nube.com.br/festivaldevagas" target="_blank" rel="noopener">nube.com.br/festivaldevagas</a>.</span></div>
+      <div class="vaga"><span class="ag">Agiel · vaga DF2026000440</span><b>Presidência da República, Brasília</b><span>Seg. a sex., 6h por dia, manhã · <span class="bolsa">R$ 1.508,42</span> + auxílio-transporte</span><span class="how">Cursos de TI, Análise de Sistemas, Ciência da Computação ou Processamento de Dados. Inscrição em <a href="https://www.agiel.com.br" target="_blank" rel="noopener">agiel.com.br</a> ou WhatsApp (37) 99116-7715.</span></div>
+      <div class="vaga"><span class="ag">Nube · vaga 389653</span><b>Asa Norte</b><span>Seg. a sex., 6h por dia a combinar · <span class="bolsa">R$ 2.000,00</span> + VT + recesso remunerado</span><span class="how">TI e áreas correlatas. Inscrição em <a href="https://www.nube.com.br" target="_blank" rel="noopener">nube.com.br</a> ou 3004-6290.</span></div>
+      <div class="vaga"><span class="ag">Nube · vaga 388157</span><b>Home office</b><span>Seg. a sex., 9h às 16h · <span class="bolsa">R$ 1.300,00</span> + VT + recesso remunerado</span><span class="how">TI e áreas correlatas. Inscrição em <a href="https://www.nube.com.br" target="_blank" rel="noopener">nube.com.br</a> ou 3004-6290.</span></div>
+      <div class="vaga"><span class="ag">CIEE · códigos 6276184, 6275776 e 6257532</span><b>Asa Norte e Setor de Habitações Individuais Sul</b><span><span class="bolsa">R$ 1.860,00</span> (Asa Norte, 1º ao 3º semestre) · <span class="bolsa">R$ 1.055,89</span> (SHIS, 1º ao 7º) · <span class="bolsa">R$ 1.000,00</span> (Asa Norte, 6º ao 7º, 13h às 18h)</span><span class="how">Cadastro em <a href="https://portal.ciee.org.br" target="_blank" rel="noopener">portal.ciee.org.br</a> ou (61) 3003-2433.</span></div>
+    </div>
+    <p class="src">O NUADIS só divulga as vagas. Inscrição, seleção e contratação são feitas direto com a agência.</p>
   </section>
 
   <section class="panel" aria-labelledby="rs">
@@ -161,7 +183,7 @@ const ITENS=[
  {ini:"2026-10-27",hora:"23:59",tipo:"entrega",disc:"Engenharia de Software",t:"Atividade de Modelagem de Diagramas",url:M+"156555"},
  {ini:"2026-10-27",fim:"2026-10-29",tipo:"evento",disc:"Todas as turmas",t:"Jornada Interdisciplinar",nota:"Sem aula regular nesses dias."},
  {ini:"2026-10-29",hora:"23:59",tipo:"entrega",disc:"Infraestrutura de Redes",t:"Aula Prática 02",url:M+"157587"},
- {ini:"2026-10-30",tipo:"prova",disc:"Todas as disciplinas",t:"Avaliação integrada presencial"},
+ {ini:"2026-10-30",hora:"entrada 18h45 às 19h20",tipo:"prova",disc:"SI 1º e 2º · noturno",t:"Avaliação Integrada, no Auditório",nota:"Aplicação: Prof. Márcio Barros. Não há tolerância para atraso: quem chegar depois das 19h20 não faz a prova. Celular proibido durante a prova."},
  {ini:"2026-10-31",hora:"23:59",tipo:"entrega",disc:"Sistemas Operacionais (EAD)",t:"Projeto 03: Gerenciamento de Memória e Sistemas de Arquivos",url:M+"156527"},
  {ini:"2026-11-03",tipo:"prova",disc:"Fund. Banco de Dados",t:"Prova na 1ª metade da aula",nota:"A 2ª metade da aula terá conteúdo novo."},
  {ini:"2026-11-08",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Fórum do 2º Bimestre",nota:"Post de 10 a 20 linhas (0,5 ponto) + comentário no post de um colega (até 0,3 ponto)."},
