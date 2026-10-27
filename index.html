@@ -1,9 +1,4 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>*,*::before,*::after{box-sizing:border-box}:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><style>*,*::before,*::after{box-sizing:border-box}:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 <title>Quadro da Turma SI-NOT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
@@ -101,8 +96,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 @media (max-width:420px){.week li{grid-template-columns:1fr;gap:0}.item{grid-template-columns:52px 1fr}}
 @media (prefers-reduced-motion:no-preference){.filters button{transition:background .15s,color .15s}}
 </style>
-</head>
-<body>
+</head><body>
 
 <div class="wrap">
  <div class="top">
@@ -110,7 +104,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
     <span class="eyebrow">Segurança da Informação · Noturno · SI-NOT 1A+2A · 2º/2026</span>
     <h1>Quadro da Turma</h1>
     <p>Prazos, provas e avisos das disciplinas juntos num lugar só, para ninguém precisar caçar no Moodle ou rolar o WhatsApp.</p>
-    <div class="meta"><span>Atualizado em <b id="upd">23/10/2026</b></span><span>Mantido pelos representantes de turma</span></div>
+    <div class="meta"><span>Atualizado em <b id="upd">27/10/2026</b></span><span>Mantido pelos representantes de turma</span></div>
   </header>
 
   <section class="week" aria-labelledby="wk">
@@ -130,6 +124,8 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   <section class="panel" aria-labelledby="av">
     <h2 id="av">Avisos dos professores</h2>
     <ul>
+      <li><b>Direito Digital (EAD):</b> a aula síncrona de 24/10 foi adiada para sábado, 31/10, às 9h, por determinação da coordenação do EAD.</li>
+      <li><b>Jornada Interdisciplinar (27 a 29/10):</b> para receber a pontuação, é preciso ter presença registrada nos três dias.</li>
       <li><b>Engenharia de Software:</b> não houve aula na quarta, 21/10. A reposição vai ser combinada com a turma.</li>
       <li><b>Fund. Banco de Dados:</b> aulas em novembro nos dias 03, 10 e 17. Em 27 e 28/10 não há aula regular por causa da Jornada Interdisciplinar.</li>
       <li class="warn"><b>Avaliação Integrada (30/10, Auditório):</b> entrada das 18h45 às 19h20, sem tolerância para atraso e sem celular. Quem cursa só disciplinas em dependência não faz as provas presenciais. Quem tem disciplinas regulares e de dependência faz apenas as provas das regulares.</li>
@@ -178,20 +174,25 @@ const TIPOS={entrega:{n:"Entrega",c:"--c-entrega"},prova:{n:"Prova",c:"--c-prova
 const M="https://moodle.df.senac.br/mod/assign/view.php?id=";
 // ini/fim no formato AAAA-MM-DD; hora opcional
 const ITENS=[
- {ini:"2026-10-24",hora:"9h",tipo:"aula",disc:"Direito Digital (EAD)",t:"Aula online síncrona"},
  {ini:"2026-10-27",hora:"19h",tipo:"entrega",disc:"Fund. Banco de Dados",t:"Atividade 6: normalização (1FN, 2FN, 3FN)",nota:"Entregar em planilha .xlsx.",url:M+"157415"},
  {ini:"2026-10-27",hora:"23:59",tipo:"entrega",disc:"Engenharia de Software",t:"Atividade de Modelagem de Diagramas",url:M+"156555"},
- {ini:"2026-10-27",fim:"2026-10-29",tipo:"evento",disc:"Todas as turmas",t:"Jornada Interdisciplinar",nota:"Sem aula regular nesses dias."},
+ {ini:"2026-10-27",fim:"2026-10-29",tipo:"evento",disc:"Todas as turmas",t:"Jornada Interdisciplinar",nota:"Sem aula regular nesses dias. Para receber a pontuação, é preciso presença registrada nos três dias."},
  {ini:"2026-10-29",hora:"23:59",tipo:"entrega",disc:"Infraestrutura de Redes",t:"Aula Prática 02",url:M+"157587"},
  {ini:"2026-10-30",hora:"entrada 18h45 às 19h20",tipo:"prova",disc:"SI 1º e 2º · noturno",t:"Avaliação Integrada, no Auditório",nota:"Aplicação: Prof. Márcio Barros. Não há tolerância para atraso: quem chegar depois das 19h20 não faz a prova. Celular proibido durante a prova."},
+ {ini:"2026-10-31",hora:"9h",tipo:"aula",disc:"Direito Digital (EAD)",t:"Aula online síncrona",nota:"Remarcada: estava prevista para 24/10."},
  {ini:"2026-10-31",hora:"23:59",tipo:"entrega",disc:"Sistemas Operacionais (EAD)",t:"Projeto 03: Gerenciamento de Memória e Sistemas de Arquivos",url:M+"156527"},
+ {ini:"2026-10-31",hora:"23:59",tipo:"entrega",disc:"Extensão (EAD)",t:"Tarefa 1: Planejamento detalhado da ação de extensão",url:M+"157736"},
+ {ini:"2026-11-02",hora:"23:55",tipo:"entrega",disc:"Lógica de Programação com Python",t:"Lista 2",url:M+"157949"},
+ {ini:"2026-11-02",hora:"23:55",tipo:"entrega",disc:"Lógica de Programação com Python",t:"Atividade Sala de Aula 2",url:M+"157986"},
  {ini:"2026-11-03",tipo:"prova",disc:"Fund. Banco de Dados",t:"Prova na 1ª metade da aula",nota:"A 2ª metade da aula terá conteúdo novo."},
+ {ini:"2026-11-07",tipo:"aula",disc:"Direito Digital (EAD)",t:"3ª aula online síncrona do bimestre"},
  {ini:"2026-11-08",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Fórum do 2º Bimestre",nota:"Post de 10 a 20 linhas (0,5 ponto) + comentário no post de um colega (até 0,3 ponto)."},
  {ini:"2026-11-11",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Questionários dos Temas 6 a 10",nota:"Fazer todos antes da prova EAD de 12/11. O professor escolhe um deles para valer 1 ponto no trabalho do 2º bimestre. Não deixe questões em branco.",links:[["Tema 6","https://moodle.df.senac.br/mod/quiz/view.php?id=149115"],["Tema 7","https://moodle.df.senac.br/mod/quiz/view.php?id=149116"],["Tema 8","https://moodle.df.senac.br/mod/quiz/view.php?id=149117"],["Tema 9","https://moodle.df.senac.br/mod/quiz/view.php?id=149118"],["Tema 10","https://moodle.df.senac.br/mod/quiz/view.php?id=149119"]]},
  {ini:"2026-11-12",tipo:"prova",disc:"Disciplinas EAD",t:"Provas EAD presenciais"},
  {ini:"2026-11-20",hora:"23:59",tipo:"entrega",disc:"Sistemas Operacionais (EAD)",t:"Projeto 04: Entrada, Saída e Administração de SO",url:M+"156541"},
  {ini:"2026-11-23",fim:"2026-11-27",tipo:"prova",disc:"Todas as disciplinas",t:"Semana de provas do bimestre"},
- {ini:"2026-11-24",tipo:"prova",disc:"Fund. Banco de Dados",t:"Prova sobre o conteúdo novo"}
+ {ini:"2026-11-24",tipo:"prova",disc:"Fund. Banco de Dados",t:"Prova sobre o conteúdo novo"},
+ {ini:"2026-12-07",fim:"2026-12-11",tipo:"prova",disc:"Disciplinas EAD",t:"Provas finais EAD, presenciais",nota:"Resultado da prova final divulgado em 12/12."}
 ];
 const DS=["dom","seg","ter","qua","qui","sex","sáb"], MS=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
 const pd=s=>{const[a,m,d]=s.split("-").map(Number);return new Date(a,m-1,d)};
@@ -228,5 +229,4 @@ function semana(){
 }
 filtros();linha();semana();
 </script>
-</body>
-</html>
+</body></html>
