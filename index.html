@@ -127,6 +127,9 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
       <li><b>Direito Digital (EAD):</b> a aula síncrona de 24/10 foi adiada para sábado, 31/10, às 9h, por determinação da coordenação do EAD.</li>
       <li><b>Jornada Interdisciplinar (27 a 29/10):</b> para receber a pontuação, é preciso ter presença registrada nos três dias.</li>
       <li><b>Engenharia de Software:</b> não houve aula na quarta, 21/10. A reposição vai ser combinada com a turma.</li>
+      <li><b>Engenharia de Software:</b> os quizzes da disciplina ficam em <a href="https://felippepires.pythonanywhere.com/turmas/18/" target="_blank" rel="noopener">felippepires.pythonanywhere.com/turmas/18</a>. No momento não há nenhum quiz aberto.</li>
+      <li><b>Laboratório de Inovação:</b> todos os projetos foram classificados. A próxima etapa é gravar os vídeos com roteiro, e o roteiro pode ser o mesmo do Pitch de 5 minutos.</li>
+      <li><b>Lógica de Programação com Python:</b> próximas aulas em 09/11 e 16/11. Prova em 23/11. Recuperação em 07/12, que é também a última aula da disciplina.</li>
       <li><b>Fund. Banco de Dados:</b> aulas em novembro nos dias 03, 10 e 17. Em 27 e 28/10 não há aula regular por causa da Jornada Interdisciplinar.</li>
       <li class="warn"><b>Avaliação Integrada (30/10, Auditório):</b> entrada das 18h45 às 19h20, sem tolerância para atraso e sem celular. Quem cursa só disciplinas em dependência não faz as provas presenciais. Quem tem disciplinas regulares e de dependência faz apenas as provas das regulares.</li>
       <li class="warn"><b>Disciplinas EAD:</b> façam todas as provas e atividades. Quem não fizer pode ficar de DP (dependência), o que impede a colação de grau.</li>
@@ -170,7 +173,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 </div>
 
 <script>
-const TIPOS={entrega:{n:"Entrega",c:"--c-entrega"},prova:{n:"Prova",c:"--c-prova"},aula:{n:"Aula",c:"--c-aula"},evento:{n:"Evento",c:"--c-evento"}};
+const TIPOS={entrega:{n:"Entrega Moodle",p:"Entregas Moodle",c:"--c-entrega"},prova:{n:"Prova",c:"--c-prova"},aula:{n:"Aula",c:"--c-aula"},evento:{n:"Evento",c:"--c-evento"}};
 const M="https://moodle.df.senac.br/mod/assign/view.php?id=";
 // ini/fim no formato AAAA-MM-DD; hora opcional
 const ITENS=[
@@ -186,6 +189,10 @@ const ITENS=[
  {ini:"2026-11-02",hora:"23:55",tipo:"entrega",disc:"Lógica de Programação com Python",t:"Atividade Sala de Aula 2",url:M+"157986"},
  {ini:"2026-11-03",tipo:"prova",disc:"Fund. Banco de Dados",t:"Prova na 1ª metade da aula",nota:"A 2ª metade da aula terá conteúdo novo."},
  {ini:"2026-11-07",tipo:"aula",disc:"Direito Digital (EAD)",t:"3ª aula online síncrona do bimestre"},
+ {ini:"2026-11-09",tipo:"aula",disc:"Lógica de Programação com Python",t:"Aula"},
+ {ini:"2026-11-16",tipo:"aula",disc:"Lógica de Programação com Python",t:"Aula"},
+ {ini:"2026-11-23",tipo:"prova",disc:"Lógica de Programação com Python",t:"Prova"},
+ {ini:"2026-12-07",tipo:"prova",disc:"Lógica de Programação com Python",t:"Recuperação",nota:"Última aula da disciplina."},
  {ini:"2026-11-08",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Fórum do 2º Bimestre",nota:"Post de 10 a 20 linhas (0,5 ponto) + comentário no post de um colega (até 0,3 ponto)."},
  {ini:"2026-11-11",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Questionários dos Temas 6 a 10",nota:"Fazer todos antes da prova EAD de 12/11. O professor escolhe um deles para valer 1 ponto no trabalho do 2º bimestre. Não deixe questões em branco.",links:[["Tema 6","https://moodle.df.senac.br/mod/quiz/view.php?id=149115"],["Tema 7","https://moodle.df.senac.br/mod/quiz/view.php?id=149116"],["Tema 8","https://moodle.df.senac.br/mod/quiz/view.php?id=149117"],["Tema 9","https://moodle.df.senac.br/mod/quiz/view.php?id=149118"],["Tema 10","https://moodle.df.senac.br/mod/quiz/view.php?id=149119"]]},
  {ini:"2026-11-12",tipo:"prova",disc:"Disciplinas EAD",t:"Provas EAD presenciais"},
@@ -207,7 +214,7 @@ let filtro="todos";
 try{filtro=localStorage.getItem("filtro")||"todos"}catch(e){}
 function filtros(){
   const el=document.getElementById("filters");
-  const op=[["todos","Todos",null],...Object.entries(TIPOS).map(([k,v])=>[k,v.n+"s",v.c])];
+  const op=[["todos","Todos",null],...Object.entries(TIPOS).map(([k,v])=>[k,v.p||v.n+"s",v.c])];
   el.innerHTML=op.map(([k,n,c])=>`<button type="button" id="f-${k}" data-k="${k}" aria-pressed="${filtro===k}">${c?`<span class="dot" style="background:var(${c})"></span>`:""}${n}</button>`).join("");
   el.onclick=e=>{const b=e.target.closest("button");if(!b)return;filtro=b.dataset.k;try{localStorage.setItem("filtro",filtro)}catch(_){ }filtros();linha()};
 }
