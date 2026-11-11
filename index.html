@@ -96,15 +96,15 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 @media (max-width:420px){.week li{grid-template-columns:1fr;gap:0}.item{grid-template-columns:52px 1fr}}
 @media (prefers-reduced-motion:no-preference){.filters button{transition:background .15s,color .15s}}
 </style>
-
 </head><body>
+
 <div class="wrap">
  <div class="top">
   <header>
     <span class="eyebrow">Segurança da Informação · Noturno · SI-NOT 1A+2A · 2º/2026</span>
     <h1>Quadro da Turma</h1>
     <p>Prazos, provas e avisos das disciplinas juntos num lugar só, para ninguém precisar caçar no Moodle ou rolar o WhatsApp.</p>
-    <div class="meta"><span>Atualizado em <b id="upd">05/11/2026</b></span><span>Mantido pelos representantes de turma</span></div>
+    <div class="meta"><span>Atualizado em <b id="upd">11/11/2026</b></span><span>Mantido pelos representantes de turma</span></div>
   </header>
 
   <section class="week" aria-labelledby="wk">
@@ -124,6 +124,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   <section class="panel" aria-labelledby="av">
     <h2 id="av">Avisos dos professores</h2>
     <ul>
+      <li class="warn"><b>Provas EAD presenciais (SI 1 e 2, noturno):</b> quinta, 12/11, no Auditório da Fac 913 Sul. Entrada até as 19h30. Fiquem atentos à data e ao horário.</li>
       <li><b>Fund. Banco de Dados:</b> os conteúdos 11 e 12 (MySQL Workbench: criar banco e tabelas, e chave estrangeira) são para todos assistirem antes da aula de 10/11. Os conteúdos 09 e 10 (instalação do MySQL Server e do Workbench) são só para quem usa notebook pessoal. Links no calendário, em 10/11.</li>
       <li><b>Direito Digital (EAD):</b> a avaliação do 2º bimestre da turma noturna é na quinta, 12/11. O prazo dos exercícios e trabalhos do bimestre vai até 15/11.</li>
       <li><b>Direito Digital (EAD):</b> as notas do 1º bimestre foram lançadas no sistema de notas da secretaria. Questionários escolhidos: Q2 (1 ponto) e Q5 (trabalho, 2 pontos).</li>
@@ -140,6 +141,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
       <li><b>Engenharia de Software:</b> não houve aula na quarta, 21/10. A reposição vai ser combinada com a turma.</li>
       <li><b>Engenharia de Software:</b> os quizzes da disciplina ficam em <a href="https://felippepires.pythonanywhere.com/turmas/18/" target="_blank" rel="noopener">felippepires.pythonanywhere.com/turmas/18</a>. No momento não há nenhum quiz aberto.</li>
       <li><b>Laboratório de Inovação:</b> todos os projetos foram classificados. A próxima etapa é gravar os vídeos com roteiro, e o roteiro pode ser o mesmo do Pitch de 5 minutos.</li>
+      <li><b>Lógica de Programação com Python:</b> a nota do 2º bimestre (10,0 pontos) é composta assim: prova 5,0, listas de exercícios 2,0, Avaliação Integrada 2,0 e participação na Jornada Interdisciplinar 1,0.</li>
       <li><b>Lógica de Programação com Python:</b> próximas aulas em 09/11 e 16/11. Prova em 23/11. Recuperação em 07/12, que é também a última aula da disciplina.</li>
       <li><b>Fund. Banco de Dados:</b> aulas em novembro nos dias 03, 10 e 17. Em 27 e 28/10 não há aula regular por causa da Jornada Interdisciplinar.</li>
       <li class="warn"><b>Avaliação Integrada (30/10, Auditório):</b> entrada das 18h45 às 19h20, sem tolerância para atraso e sem celular. Quem cursa só disciplinas em dependência não faz as provas presenciais. Quem tem disciplinas regulares e de dependência faz apenas as provas das regulares.</li>
@@ -188,31 +190,27 @@ const TIPOS={entrega:{n:"Entrega Moodle",p:"Entregas Moodle",c:"--c-entrega"},pr
 const M="https://moodle.df.senac.br/mod/assign/view.php?id=";
 // ini/fim no formato AAAA-MM-DD; hora opcional
 const ITENS=[
- {ini:"2026-10-27",fim:"2026-10-29",tipo:"evento",disc:"Todas as turmas",t:"Jornada Interdisciplinar",nota:"Sem aula regular nesses dias. Para receber a pontuação, é preciso presença registrada nos três dias."},
- {ini:"2026-10-29",hora:"23:59",tipo:"entrega",disc:"Infraestrutura de Redes",t:"Aula Prática 02",url:M+"157587"},
- {ini:"2026-10-30",hora:"entrada 18h45 às 19h20",tipo:"prova",disc:"SI 1º e 2º · noturno",t:"Avaliação Integrada, no Auditório",nota:"Aplicação: Prof. Márcio Barros. Não há tolerância para atraso: quem chegar depois das 19h20 não faz a prova. Celular proibido durante a prova."},
- {ini:"2026-10-31",hora:"9h",tipo:"aula",disc:"Direito Digital (EAD)",t:"Aula online síncrona",nota:"Remarcada: estava prevista para 24/10."},
- {ini:"2026-10-31",hora:"23:59",tipo:"entrega",disc:"Sistemas Operacionais (EAD)",t:"Projeto 03: Gerenciamento de Memória e Sistemas de Arquivos",url:M+"156527"},
- {ini:"2026-10-31",hora:"23:59",tipo:"entrega",disc:"Extensão (EAD)",t:"Tarefa 1: Planejamento detalhado da ação de extensão",url:M+"157736"},
  {ini:"2026-11-02",hora:"23:55",tipo:"entrega",disc:"Lógica de Programação com Python",t:"Lista 2",url:M+"157949"},
  {ini:"2026-11-02",hora:"23:55",tipo:"entrega",disc:"Lógica de Programação com Python",t:"Atividade Sala de Aula 2",url:M+"157986"},
  {ini:"2026-11-03",tipo:"prova",disc:"Fund. Banco de Dados",t:"Prova na 1ª metade da aula",nota:"A 2ª metade da aula terá conteúdo novo."},
  {ini:"2026-11-04",fim:"2026-11-05",hora:"9h às 18h",tipo:"evento",disc:"Senac-DF",t:"Conecta IA 2026, na Finatec (UnB)",nota:"Estande do Senac-DF e Palco Tech, com apresentações de projetos, startups e oficinas.",links:[["Inscrições","https://www.even3.com.br/conectaiainovacao2026-725351/"]]},
  {ini:"2026-11-05",hora:"23:59",tipo:"entrega",disc:"Laboratório de Inovação",t:"Upload do vídeo do Inovaday",url:M+"158276"},
  {ini:"2026-11-07",hora:"22:00",tipo:"entrega",disc:"Engenharia de Software",t:"Atividade Diagrama de Sequência",url:M+"158600",links:[["Exemplo de Diagrama de Sequência","https://moodle.df.senac.br/mod/resource/view.php?id=158617"]]},
- {ini:"2026-11-07",tipo:"aula",disc:"Direito Digital (EAD)",t:"3ª aula online síncrona do bimestre"},
+ {ini:"2026-11-07",hora:"9h",tipo:"aula",disc:"Direito Digital (EAD)",t:"3ª aula online síncrona do bimestre"},
  {ini:"2026-11-07",hora:"8h às 19h",tipo:"evento",disc:"Faculdade Senac + TalkToMe",t:"IA no Modo Harness + Ideathon TalkToMe",nota:"Imersão em IA com desafio em equipe. Vagas limitadas.",links:[["Inscrições","https://evento.talktome.com.br/"]]},
  {ini:"2026-11-09",tipo:"aula",disc:"Lógica de Programação com Python",t:"Aula"},
  {ini:"2026-11-16",tipo:"aula",disc:"Lógica de Programação com Python",t:"Aula"},
- {ini:"2026-11-23",tipo:"prova",disc:"Lógica de Programação com Python",t:"Prova"},
+ {ini:"2026-11-16",hora:"23:55",tipo:"entrega",disc:"Lógica de Programação com Python",t:"Lista 3",url:M+"158964"},
+ {ini:"2026-11-23",tipo:"prova",disc:"Lógica de Programação com Python",t:"Prova",nota:"Vale 5,0 pontos na nota do 2º bimestre."},
  {ini:"2026-12-07",tipo:"prova",disc:"Lógica de Programação com Python",t:"Recuperação",nota:"Última aula da disciplina."},
  {ini:"2026-11-08",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Fórum do 2º Bimestre",nota:"Post de 10 a 20 linhas (0,5 ponto) + comentário no post de um colega (até 0,3 ponto)."},
  {ini:"2026-11-10",tipo:"aula",disc:"Fund. Banco de Dados",t:"Aula",nota:"Todos devem assistir aos conteúdos 11 e 12 antes da aula. Os conteúdos 09 e 10 são só para quem usa notebook pessoal.",links:[["11 · Workbench: criar banco e tabelas","https://moodle.df.senac.br/mod/url/view.php?id=158700"],["12 · Chave estrangeira no Workbench","https://moodle.df.senac.br/mod/url/view.php?id=158701"],["09 · Instalar MySQL (notebook pessoal)","https://moodle.df.senac.br/mod/url/view.php?id=158698"],["10 · MySQL 8 no Windows (notebook pessoal)","https://moodle.df.senac.br/mod/url/view.php?id=158699"]]},
  {ini:"2026-11-11",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Questionários dos Temas 6 a 10",nota:"Fazer todos antes da prova EAD de 12/11. O professor escolhe um deles para valer 1 ponto no trabalho do 2º bimestre. Não deixe questões em branco.",links:[["Tema 6","https://moodle.df.senac.br/mod/quiz/view.php?id=149115"],["Tema 7","https://moodle.df.senac.br/mod/quiz/view.php?id=149116"],["Tema 8","https://moodle.df.senac.br/mod/quiz/view.php?id=149117"],["Tema 9","https://moodle.df.senac.br/mod/quiz/view.php?id=149118"],["Tema 10","https://moodle.df.senac.br/mod/quiz/view.php?id=149119"]]},
- {ini:"2026-11-12",tipo:"prova",disc:"Disciplinas EAD",t:"Provas EAD presenciais",nota:"Direito Digital: avaliação do 2º bimestre da turma noturna neste dia."},
+ {ini:"2026-11-12",hora:"entrada até 19h30",tipo:"prova",disc:"Disciplinas EAD",t:"Provas EAD presenciais, no Auditório da Fac 913 Sul",nota:"Logística oficial das provas EAD para SI 1 e 2, noturno. Não se atrasem: a entrada vai só até 19h30. Direito Digital: avaliação do 2º bimestre da turma noturna neste dia."},
  {ini:"2026-11-15",tipo:"entrega",disc:"Direito Digital (EAD)",t:"Fim do prazo dos exercícios e trabalhos do 2º bimestre"},
  {ini:"2026-11-13",hora:"9h às 19h",tipo:"evento",disc:"Faculdade Senac · Asa Sul",t:"A gente se vê na Collab (Senac 80 anos)",nota:"A unidade ocupa as redes sociais do Senac-DF neste dia. Inscrição gratuita até 05/11.",links:[["Inscrição no Sympla","https://www.sympla.com.br/evento/a-gente-se-ve-na-collab-faculdade-senac-df/3634041"]]},
  {ini:"2026-11-14",tipo:"evento",disc:"Comunidade DevOps",t:"DevOps Days Brasília, no Centro de Convenções ParlaMundi",nota:"Evento mundial sobre DevOps. Últimas vagas.",links:[["Inscrições","https://hubconnecteventos.com.br/evento/devopsdaysbsb2026"],["Linktree","https://linktr.ee/devopsdaysbsb"],["Site oficial","https://devopsdays.org/events/2025-brasilia/welcome/"],["Instagram","https://www.instagram.com/devopsdaysbsb"],["LinkedIn","https://www.linkedin.com/company/devopsdaysbsb"],["Comunidade WhatsApp DevOps BSB","https://chat.whatsapp.com/Bbdt3KoyS2pDEt09HGJ7zi"],["Fotos de 2025","https://drive.google.com/drive/folders/17zMdcgvq58pyx635bZ-fsBBET61NsAuX?usp=drive_link"]]},
+ {ini:"2026-11-17",tipo:"entrega",disc:"Fund. Banco de Dados",t:"Modelo lógico de um sistema de Fintech no MySQL Workbench",nota:"Usar o schema db_seunome (ex.: db_maria). Entrega pelo Moodle."},
  {ini:"2026-11-20",hora:"23:59",tipo:"entrega",disc:"Sistemas Operacionais (EAD)",t:"Projeto 04: Entrada, Saída e Administração de SO",url:M+"156541"},
  {ini:"2026-11-23",fim:"2026-11-27",tipo:"prova",disc:"Todas as disciplinas",t:"Semana de provas do bimestre"},
  {ini:"2026-11-24",tipo:"prova",disc:"Fund. Banco de Dados",t:"Prova sobre o conteúdo novo"},
